@@ -1,6 +1,7 @@
 from okta.framework.ApiClient import ApiClient
 from okta.framework.Utils import Utils
 from okta.models.user.User import User
+from okta.models.app.AppInstance import AppInstance
 from okta.models.usergroup.UserGroup import UserGroup
 from okta.framework.PagedResults import PagedResults
 
@@ -70,6 +71,16 @@ class UserGroupsClient(ApiClient):
         """
         response = ApiClient.get_path(self, '/{0}/users'.format(gid))
         return Utils.deserialize(response.text, User)
+
+    def get_group_apps(self, gid):
+        """Get the apps of a group
+
+        :param gid: the group id
+        :type gid: str
+        :rtype: list of App
+        """
+        response = ApiClient.get_path(self, '/{0}/apps'.format(gid))
+        return Utils.deserialize(response.text, AppInstance)
 
     def update_group(self, group):
         """Update a group
