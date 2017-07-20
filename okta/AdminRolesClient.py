@@ -113,7 +113,7 @@ class AdminRolesClient(ApiClient):
         :param app_name: App name: str
         :return: None
         """
-        ApiClient.put_path(
+        return ApiClient.put_path(
             self,
             '/{uid}/roles/{rid}/targets/catalog/apps/{app_name}'.format(
                 uid=uid,
