@@ -122,6 +122,22 @@ class AdminRolesClient(ApiClient):
             )
         )
 
+    def add_app_instance_target_to_app_admin_role(self, uid, rid, app_name,
+                                                  app_instance_id):
+        """Assing the role APP_ADMIN to a app target instance 
+
+        :param uid: User id: str
+        :param rid: Role id: str
+        :param app_name: App name: str
+        :param app_instance_id: Instance id: str  
+        :return: None
+        """
+        return ApiClient.put_path(
+            self,
+            f'/{uid}/roles/{rid}/targets/catalog/apps/{app_name}/'
+            f'{app_instance_id}'
+        )
+
     def remove_app_target_to_app_admin_role(self, uid, rid, app_name):
         """Removes a app target to an APP_ADMIN role assignment.
 
